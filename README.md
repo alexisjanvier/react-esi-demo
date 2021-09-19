@@ -1,4 +1,4 @@
-Ce dépot contient le code de démo de l'article de blog "Gérer des ESI avec Next.js".
+Ce dépôt contient le code de démo de l'article de blog "Gérer des ESI avec Next.js".
 
 ## Installer le demo
 
@@ -6,7 +6,7 @@ Ce dépot contient le code de démo de l'article de blog "Gérer des ESI avec Ne
 
 Tout d'abord, la démo est prévue pour être lancée localement en https sur l'url `https://react-esi.local`. Vous devrez donc :
 
-- ajouter l'entrée `127.0.0.1 react-esi.local` à votre '/etc/host`
+- ajouter l'entrée `127.0.0.1 react-esi.local` à votre `/etc/host`
 - installer mkcert (voir [instructions](https://github.com/FiloSottile/mkcert#installation)) pour pouvoir générer un certificat.
 
 Enfin, l'environnement de démo utilise [Docker](https://docs.docker.com/get-docker/) et [Docker Compose](https://docs.docker.com/compose/install/). Vous devez donc les avoir installés sur votre environnement.
