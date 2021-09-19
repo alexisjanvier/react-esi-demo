@@ -14,7 +14,7 @@ export default function Home() {
         </h1>
         <br />
         <p className={styles.description}>
-          Thank's to <a href="https://github.com/dunglas/react-esi" className={styles.card}>react-esi</a>
+          Thanks to <a href="https://github.com/dunglas/react-esi" className={styles.card}>react-esi</a>
         </p>
 
         <p className={styles.description}>

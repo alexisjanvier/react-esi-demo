@@ -1,21 +1,26 @@
 /* eslint react/prop-types: 0 */
 /* eslint no-unused-vars: 0 */
-/* eslint prettier/prettier: 0 */
 import React from 'react';
 
-import styles from '../styles/Home.module.css'
+const footerCss = {
+    width: '100%',
+    height: '100px',
+    borderTop: '1px solid #eaeaea',
+    textAlign: 'center',
+    paddingTop: '2rem',
+};
 
 class Footer extends React.Component {
     render() {
         return (
-            <footer className={styles.footer}>
-                This Repository has <span style={{ fontWeight: 'bold', margin: 'O 5px'}}>{this.props.data.stargazers_count}</span> stars.
+            <footer style={footerCss}>
+                The react-esi repository has <span style={{ fontWeight: 'bold', margin: 'O 5px'}}>{this.props.data ? this.props.data.stargazers_count : '--'}</span> stars on Github.
             </footer>
         );
     }
 
     static async getInitialProps({ props, req, res }) {
-        return fetch(`https://api.github.com/repos/alexisjanvier/${props.repo}`)
+        return fetch(`https://api.github.com/repos/dunglas/${props.repo}`)
             .then((fetchResponse) => {
                 if (fetchResponse.status === 404) {
                     return null;
@@ -37,7 +42,7 @@ class Footer extends React.Component {
 
                 return {
                     ...props,
-                    data,
+                    data: { 'stargazers_count': data.stargazers_count },
                 };
             })
             .catch((error) => {
