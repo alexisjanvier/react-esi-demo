@@ -1,34 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Ce dépot contient le code de démo de l'article de blog "Gérer des ESI avec Next.js".
 
-## Getting Started
+## Installer le demo
 
-First, run the development server:
+### Prérequis
+
+Tout d'abord, la démo est prévue pour être lancée localement en https sur l'url `https://react-esi.local`. Vous devrez donc :
+
+- ajouter l'entrée `127.0.0.1 react-esi.local` à votre '/etc/host`
+- installer mkcert (voir [instructions](https://github.com/FiloSottile/mkcert#installation)) pour pouvoir générer un certificat.
+
+Enfin, l'environnement de démo utilise [Docker](https://docs.docker.com/get-docker/) et [Docker Compose](https://docs.docker.com/compose/install/). Vous devez donc les avoir installés sur votre environnement.
+
+### Installation
+
+Vous devez tout d'abord générer le certificat pour le https:
 
 ```bash
-npm run dev
-# or
-yarn dev
+make create-cert
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Puis installer les dépendances:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+make install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## L'environnement de développement
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Vous pouvez lancer l'environnement de développement avec la recette :
 
-## Learn More
+```bash
+make start
+```
 
-To learn more about Next.js, take a look at the following resources:
+Le site est alors accessible sur https://react-esi.local
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Cet environnement va vous permettre de tester la mise en place de vos propres fragments ESI.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Mais cet environnement ne comporte pas de serveur de cache http (Varnish), et ne permet donc pas de tester le fonctionnement final. Pour cela, vous devrez utiliser l'environnement de production.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## L'environnement de production
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Cet environnement possède un serveur de cache http (Varnish) et va donc permettre de tester les fragments ESI.
+
+Il faut tout d'abord lancer le build de production : 
+
+```bash
+make build
+```
+
+Puis les serveurs de production :
+
+```bash
+make production-start
+```
+
+Le site avec le cache http est accessible sur https://react-esi.local
+
+Vous pouvez aussi visualiser le code généré par Next.js (avant Varnish) sur l'url http://localhost:3000
+
